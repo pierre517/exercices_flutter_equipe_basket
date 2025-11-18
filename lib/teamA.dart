@@ -59,7 +59,7 @@ class _TeamAState extends State<TeamA> {
           } else if (snapshot.hasData) {
             final allPlayers = snapshot.data!;
             final players = allPlayers
-                .where((player) => player.age >= 18 && player.age <= 25)
+                .where((player) => player.age >= 18 && player.age <= 34)
                 .take(10)
                 .toList();
 
@@ -67,29 +67,37 @@ class _TeamAState extends State<TeamA> {
               itemCount: players.length,
               itemBuilder: (context, index) {
                 final player = players[index];
-                return Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.orangeAccent,
-                    boxShadow: [
-                      BoxShadow(
-                        color: const Color.fromARGB(
-                          255,
-                          104,
-                          104,
-                          104,
-                        ).withValues(),
-                        blurRadius: 5,
-                        spreadRadius: 5,
-                        offset: Offset(0, 5),
+                return Column(
+                  children: [
+                    SizedBox(height: 10),
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.orangeAccent,
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color.fromARGB(
+                              255,
+                              104,
+                              104,
+                              104,
+                            ).withValues(),
+                            blurRadius: 5,
+                            spreadRadius: 5,
+                            offset: Offset(0, 5),
+                          ),
+                        ],
                       ),
-                    ],
-                  ),
-                  child: ListTile(
-                    title: Text(
-                      '${player.prenom} ${player.nom}, numero: ${player.id}',
+                      child: ListTile(
+                        title: Center(
+                          child: Text(
+                            '${player.prenom} ${player.nom}, numero: ${player.id}',
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
+                    SizedBox(height: 10),
+                  ],
                 );
               },
             );
