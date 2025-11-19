@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:introduction/view/teams.dart';
+import 'package:introduction/view/widgets/drawer.dart';
 import 'package:introduction/viewModel/teamsViewModel.dart';
 
 class Exo5 extends StatefulWidget {
@@ -20,45 +21,7 @@ class _Exo5State extends State<Exo5> {
         title: Center(child: Text('Chink wo Sheeeh')),
         backgroundColor: Colors.orangeAccent,
       ),
-      drawer: Drawer(
-        backgroundColor: const Color.fromARGB(255, 253, 186, 98),
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            SizedBox(height: 80),
-            ListTile(
-              title: const Text('TEAM A', style: TextStyle(fontSize: 20)),
-              onTap: () async {
-                final myTeamA = await TeamsVm.teamA();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (context) => Teams(title: 'TEAM A', team: myTeamA),
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text('TEAM B', style: TextStyle(fontSize: 20)),
-              onTap: () async {
-                final myTeamB = await TeamsVm.teamB();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (context) => Teams(title: 'TEAM B', team: myTeamB),
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text('Accueuil', style: TextStyle(fontSize: 20)),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: MyDrawer(),
       body: Column(
         children: [
           Expanded(
@@ -73,6 +36,7 @@ class _Exo5State extends State<Exo5> {
                         child: InkWell(
                           onTap: () async {
                             final myTeamA = await TeamsVm.teamA();
+                            if (!context.mounted) return;
 
                             Navigator.push(
                               context,
@@ -92,7 +56,7 @@ class _Exo5State extends State<Exo5> {
                         ),
                       ),
                       Divider(),
-                      SizedBox(height: 50),
+                      SizedBox(height: 20),
                       Text(
                         style: TextStyle(
                           fontSize: teamA >= 100 ? 110 : 150,
@@ -100,7 +64,7 @@ class _Exo5State extends State<Exo5> {
                         ),
                         '$teamA',
                       ),
-                      SizedBox(height: teamA >= 100 ? 107 : 40),
+                      SizedBox(height: teamA >= 100 ? 107 : 20),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.symmetric(
@@ -160,6 +124,7 @@ class _Exo5State extends State<Exo5> {
                         child: InkWell(
                           onTap: () async {
                             final myTeamB = await TeamsVm.teamB();
+                            if (!context.mounted) return;
                             Navigator.push(
                               context,
                               MaterialPageRoute<void>(
@@ -178,7 +143,7 @@ class _Exo5State extends State<Exo5> {
                         ),
                       ),
                       Divider(),
-                      SizedBox(height: 50),
+                      SizedBox(height: 20),
                       Text(
                         style: TextStyle(
                           fontSize: teamB >= 100 ? 110 : 150,
@@ -186,7 +151,7 @@ class _Exo5State extends State<Exo5> {
                         ),
                         '$teamB',
                       ),
-                      SizedBox(height: teamB >= 100 ? 107 : 40),
+                      SizedBox(height: teamB >= 100 ? 107 : 20),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.symmetric(

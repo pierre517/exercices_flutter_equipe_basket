@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:introduction/view/displayOnePlayer.dart';
-import 'package:introduction/viewModel/teamsViewModel.dart';
+import 'package:introduction/view/widgets/drawer.dart';
 
 class Teams extends StatefulWidget {
   final String title;
@@ -20,45 +20,7 @@ class _TeamsState extends State<Teams> {
         title: Center(child: Text(widget.title)),
         backgroundColor: Colors.orangeAccent,
       ),
-      drawer: Drawer(
-        backgroundColor: const Color.fromARGB(255, 253, 186, 98),
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            SizedBox(height: 80),
-            ListTile(
-              title: const Text('TEAM A', style: TextStyle(fontSize: 20)),
-              onTap: () async {
-                final myTeamA = await TeamsVm.teamA();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (context) => Teams(title: 'TEAM A', team: myTeamA),
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text('TEAM B', style: TextStyle(fontSize: 20)),
-              onTap: () async {
-                final myTeamB = await TeamsVm.teamB();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute<void>(
-                    builder: (context) => Teams(title: 'TEAM B', team: myTeamB),
-                  ),
-                );
-              },
-            ),
-            ListTile(
-              title: const Text('Accueuil', style: TextStyle(fontSize: 20)),
-              onTap: () {
-                Navigator.pushNamed(context, '/accueuil');
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: MyDrawer(),
       body: ListView.builder(
         itemCount: widget.team.length,
         itemBuilder: (context, index) {
