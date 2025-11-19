@@ -1,6 +1,6 @@
 import 'package:introduction/model/players.dart';
 
-class Teams {
+class TeamsVm {
   static teamA() async {
     var allPlayers = await PLayersRepo.getAllPlayers();
 

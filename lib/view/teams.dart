@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:introduction/view/displayOnePlayer.dart';
 import 'package:introduction/viewModel/teamsViewModel.dart';
 
-class TeamB extends StatefulWidget {
+class Teams extends StatefulWidget {
   final String title;
   final dynamic team;
-  const TeamB({super.key, required this.title, required this.team});
+  const Teams({super.key, required this.title, required this.team});
 
   @override
-  State<TeamB> createState() => _TeamBState();
+  State<Teams> createState() => _TeamsState();
 }
 
-class _TeamBState extends State<TeamB> {
+class _TeamsState extends State<Teams> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,11 +29,11 @@ class _TeamBState extends State<TeamB> {
             ListTile(
               title: const Text('TEAM A', style: TextStyle(fontSize: 20)),
               onTap: () async {
-                final myTeamA = await Teams.teamA();
+                final myTeamA = await TeamsVm.teamA();
                 Navigator.push(
                   context,
                   MaterialPageRoute<void>(
-                    builder: (context) => TeamB(title: 'TEAM A', team: myTeamA),
+                    builder: (context) => Teams(title: 'TEAM A', team: myTeamA),
                   ),
                 );
               },
@@ -41,11 +41,11 @@ class _TeamBState extends State<TeamB> {
             ListTile(
               title: const Text('TEAM B', style: TextStyle(fontSize: 20)),
               onTap: () async {
-                final myTeamB = await Teams.teamB();
+                final myTeamB = await TeamsVm.teamB();
                 Navigator.push(
                   context,
                   MaterialPageRoute<void>(
-                    builder: (context) => TeamB(title: 'TEAM B', team: myTeamB),
+                    builder: (context) => Teams(title: 'TEAM B', team: myTeamB),
                   ),
                 );
               },
