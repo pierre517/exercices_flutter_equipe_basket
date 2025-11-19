@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:introduction/view/teamB.dart';
+import 'package:introduction/viewModel/teamsViewModel.dart';
 
 class Exo5 extends StatefulWidget {
   const Exo5({super.key});
@@ -26,14 +28,26 @@ class _Exo5State extends State<Exo5> {
             SizedBox(height: 80),
             ListTile(
               title: const Text('TEAM A', style: TextStyle(fontSize: 20)),
-              onTap: () {
-                Navigator.pushNamed(context, '/teamA');
+              onTap: () async {
+                final myTeamA = await Teams.teamA();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (context) => TeamB(title: 'TEAM A', team: myTeamA),
+                  ),
+                );
               },
             ),
             ListTile(
               title: const Text('TEAM B', style: TextStyle(fontSize: 20)),
-              onTap: () {
-                Navigator.pushNamed(context, '/teamB');
+              onTap: () async {
+                final myTeamB = await Teams.teamB();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (context) => TeamB(title: 'TEAM B', team: myTeamB),
+                  ),
+                );
               },
             ),
             ListTile(
@@ -57,8 +71,16 @@ class _Exo5State extends State<Exo5> {
                       SizedBox(height: 10),
                       Center(
                         child: InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/teamA');
+                          onTap: () async {
+                            final myTeamA = await Teams.teamA();
+
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (context) =>
+                                    TeamB(title: 'TEAM A', team: myTeamA),
+                              ),
+                            );
                           },
                           child: Text(
                             style: TextStyle(
@@ -78,7 +100,7 @@ class _Exo5State extends State<Exo5> {
                         ),
                         '$teamA',
                       ),
-                      SizedBox(height: teamA >= 100 ? 107 : 50),
+                      SizedBox(height: teamA >= 100 ? 107 : 40),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.symmetric(
@@ -94,7 +116,7 @@ class _Exo5State extends State<Exo5> {
                         },
                         child: Text('Add 1 point'),
                       ),
-                      SizedBox(height: 30),
+                      SizedBox(height: 20),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.symmetric(
@@ -110,7 +132,7 @@ class _Exo5State extends State<Exo5> {
                         },
                         child: Text('Add 2 point'),
                       ),
-                      SizedBox(height: 30),
+                      SizedBox(height: 20),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.symmetric(
@@ -136,8 +158,15 @@ class _Exo5State extends State<Exo5> {
                       SizedBox(height: 10),
                       Center(
                         child: InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/teamB');
+                          onTap: () async {
+                            final myTeamB = await Teams.teamB();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute<void>(
+                                builder: (context) =>
+                                    TeamB(title: 'TEAM B', team: myTeamB),
+                              ),
+                            );
                           },
                           child: Text(
                             style: TextStyle(
@@ -157,7 +186,7 @@ class _Exo5State extends State<Exo5> {
                         ),
                         '$teamB',
                       ),
-                      SizedBox(height: teamB >= 100 ? 107 : 50),
+                      SizedBox(height: teamB >= 100 ? 107 : 40),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.symmetric(
@@ -173,7 +202,7 @@ class _Exo5State extends State<Exo5> {
                         },
                         child: Text('Add 1 point'),
                       ),
-                      SizedBox(height: 30),
+                      SizedBox(height: 20),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.symmetric(
@@ -189,7 +218,7 @@ class _Exo5State extends State<Exo5> {
                         },
                         child: Text('Add 2 point'),
                       ),
-                      SizedBox(height: 30),
+                      SizedBox(height: 20),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.symmetric(
@@ -220,7 +249,7 @@ class _Exo5State extends State<Exo5> {
                       style: ElevatedButton.styleFrom(
                         padding: EdgeInsets.symmetric(
                           horizontal: 100,
-                          vertical: 25,
+                          vertical: 22,
                         ),
                         backgroundColor: Colors.orange,
                       ),
