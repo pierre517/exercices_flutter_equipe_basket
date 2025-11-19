@@ -9,8 +9,8 @@ void main() {
     MaterialApp(
       home: const Exo5(), // becomes the route named '/'
       routes: <String, WidgetBuilder>{
-        '/page2': (BuildContext context) => const Exo3(),
-        '/page3': (BuildContext context) => const Exo2(),
+        '/page2': (BuildContext context) => const Exo2(),
+        '/page3': (BuildContext context) => const Exo3(),
         '/page4': (BuildContext context) => Exo4(),
         '/accueuil': (BuildContext context) => const Exo5(),
       },

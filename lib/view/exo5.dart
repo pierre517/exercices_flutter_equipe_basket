@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:introduction/view/teamB.dart';
+import 'package:introduction/view/teams.dart';
 import 'package:introduction/viewModel/teamsViewModel.dart';
 
 class Exo5 extends StatefulWidget {
@@ -29,11 +29,11 @@ class _Exo5State extends State<Exo5> {
             ListTile(
               title: const Text('TEAM A', style: TextStyle(fontSize: 20)),
               onTap: () async {
-                final myTeamA = await Teams.teamA();
+                final myTeamA = await TeamsVm.teamA();
                 Navigator.push(
                   context,
                   MaterialPageRoute<void>(
-                    builder: (context) => TeamB(title: 'TEAM A', team: myTeamA),
+                    builder: (context) => Teams(title: 'TEAM A', team: myTeamA),
                   ),
                 );
               },
@@ -41,11 +41,11 @@ class _Exo5State extends State<Exo5> {
             ListTile(
               title: const Text('TEAM B', style: TextStyle(fontSize: 20)),
               onTap: () async {
-                final myTeamB = await Teams.teamB();
+                final myTeamB = await TeamsVm.teamB();
                 Navigator.push(
                   context,
                   MaterialPageRoute<void>(
-                    builder: (context) => TeamB(title: 'TEAM B', team: myTeamB),
+                    builder: (context) => Teams(title: 'TEAM B', team: myTeamB),
                   ),
                 );
               },
@@ -72,13 +72,13 @@ class _Exo5State extends State<Exo5> {
                       Center(
                         child: InkWell(
                           onTap: () async {
-                            final myTeamA = await Teams.teamA();
+                            final myTeamA = await TeamsVm.teamA();
 
                             Navigator.push(
                               context,
                               MaterialPageRoute<void>(
                                 builder: (context) =>
-                                    TeamB(title: 'TEAM A', team: myTeamA),
+                                    Teams(title: 'TEAM A', team: myTeamA),
                               ),
                             );
                           },
@@ -159,12 +159,12 @@ class _Exo5State extends State<Exo5> {
                       Center(
                         child: InkWell(
                           onTap: () async {
-                            final myTeamB = await Teams.teamB();
+                            final myTeamB = await TeamsVm.teamB();
                             Navigator.push(
                               context,
                               MaterialPageRoute<void>(
                                 builder: (context) =>
-                                    TeamB(title: 'TEAM B', team: myTeamB),
+                                    Teams(title: 'TEAM B', team: myTeamB),
                               ),
                             );
                           },
