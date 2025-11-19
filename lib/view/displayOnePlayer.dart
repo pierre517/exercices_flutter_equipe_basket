@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:introduction/players.dart';
+import 'package:introduction/model/players.dart';
 
 class OnePlayer extends StatelessWidget {
   final Players player;

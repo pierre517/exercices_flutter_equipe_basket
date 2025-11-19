@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:introduction/container.dart';
+import 'package:introduction/exos_de_base/container.dart';
 
 class Exo2 extends StatelessWidget {
   const Exo2({super.key});
