@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:introduction/displayOnePlayer.dart';
 import 'package:introduction/players.dart';
 
 class TeamB extends StatefulWidget {
@@ -55,7 +56,7 @@ class _TeamBState extends State<TeamB> {
         future: futurePlayers,
         builder: (context, snapshot) {
           if (snapshot.hasError) {
-            return Center(child: Text('Erreur: ${snapshot.error}'));
+            return Center(child: Text('erreur: ${snapshot.error}'));
           } else if (snapshot.hasData) {
             final allPlayers = snapshot.data!;
             final players = allPlayers
@@ -71,6 +72,8 @@ class _TeamBState extends State<TeamB> {
                   children: [
                     SizedBox(height: 10),
                     Container(
+                      width: 350,
+                      padding: EdgeInsets.symmetric(vertical: 5),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         color: Colors.orangeAccent,
@@ -88,10 +91,22 @@ class _TeamBState extends State<TeamB> {
                           ),
                         ],
                       ),
-                      child: ListTile(
-                        title: Center(
-                          child: Text(
-                            '${player.prenom} ${player.nom}, numero: ${player.id}',
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (context) => OnePlayer(player: player),
+                            ),
+                          );
+                          OnePlayer(player: player);
+                        },
+                        child: ListTile(
+                          leading: Icon(Icons.sports_basketball_outlined),
+                          title: Center(
+                            child: Text(
+                              '${player.prenom} ${player.nom}, numero ${player.id}',
+                            ),
                           ),
                         ),
                       ),

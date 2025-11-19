@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:introduction/displayOnePlayer.dart';
 import 'package:introduction/players.dart';
 
 class TeamA extends StatefulWidget {
@@ -71,6 +72,8 @@ class _TeamAState extends State<TeamA> {
                   children: [
                     SizedBox(height: 10),
                     Container(
+                      width: 350,
+                      padding: EdgeInsets.symmetric(vertical: 5),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
                         color: Colors.orangeAccent,
@@ -88,10 +91,22 @@ class _TeamAState extends State<TeamA> {
                           ),
                         ],
                       ),
-                      child: ListTile(
-                        title: Center(
-                          child: Text(
-                            '${player.prenom} ${player.nom}, numero: ${player.id}',
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute<void>(
+                              builder: (context) => OnePlayer(player: player),
+                            ),
+                          );
+                          OnePlayer(player: player);
+                        },
+                        child: ListTile(
+                          leading: Icon(Icons.sports_basketball_outlined),
+                          title: Center(
+                            child: Text(
+                              '${player.prenom} ${player.nom}, numero ${player.id}',
+                            ),
                           ),
                         ),
                       ),
@@ -102,7 +117,7 @@ class _TeamAState extends State<TeamA> {
               },
             );
           } else {
-            return const Center(child: Text('Aucun joueur trouvé'));
+            return const CircularProgressIndicator();
           }
         },
       ),
