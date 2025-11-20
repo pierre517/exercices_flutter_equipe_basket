@@ -1,6 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:introduction/model/players.dart';
 
-class TeamsVm {
+class TeamsVm extends ChangeNotifier {
+  int scoreTeamA = 0;
+  int scoreTeamB = 0;
+
   static teamA() async {
     var allPlayers = await PLayersRepo.getAllPlayers();
 
@@ -20,5 +24,21 @@ class TeamsVm {
         .take(10)
         .toList();
     return team;
+  }
+
+  addPoint(int point, team) {
+    if (team == 'A') {
+      scoreTeamA += point;
+    }
+    if (team == 'B') {
+      scoreTeamB += point;
+    }
+    notifyListeners();
+  }
+
+  resetScore() {
+    scoreTeamA = 0;
+    scoreTeamB = 0;
+    notifyListeners();
   }
 }

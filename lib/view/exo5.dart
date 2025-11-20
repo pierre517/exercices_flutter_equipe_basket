@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:introduction/view/teams.dart';
 import 'package:introduction/view/widgets/drawer.dart';
 import 'package:introduction/viewModel/teamsViewModel.dart';
+import 'package:provider/provider.dart';
 
 class Exo5 extends StatefulWidget {
   const Exo5({super.key});
@@ -11,9 +12,6 @@ class Exo5 extends StatefulWidget {
 }
 
 class _Exo5State extends State<Exo5> {
-  int teamA = 0;
-  int teamB = 0;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,14 +55,20 @@ class _Exo5State extends State<Exo5> {
                       ),
                       Divider(),
                       SizedBox(height: 20),
-                      Text(
-                        style: TextStyle(
-                          fontSize: teamA >= 100 ? 110 : 150,
-                          fontWeight: FontWeight.bold,
+                      Consumer<TeamsVm>(
+                        builder: (context, value, child) => Text(
+                          style: TextStyle(
+                            fontSize: value.scoreTeamA >= 100 ? 110 : 150,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          value.scoreTeamA.toString(),
                         ),
-                        '$teamA',
                       ),
-                      SizedBox(height: teamA >= 100 ? 107 : 20),
+                      SizedBox(
+                        height: context.watch<TeamsVm>().scoreTeamA >= 100
+                            ? 107
+                            : 20,
+                      ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.symmetric(
@@ -74,9 +78,7 @@ class _Exo5State extends State<Exo5> {
                           backgroundColor: Colors.orange,
                         ),
                         onPressed: () {
-                          setState(() {
-                            teamA++;
-                          });
+                          context.read<TeamsVm>().addPoint(1, 'A');
                         },
                         child: Text('Add 1 point'),
                       ),
@@ -90,9 +92,7 @@ class _Exo5State extends State<Exo5> {
                           backgroundColor: Colors.orange,
                         ),
                         onPressed: () {
-                          setState(() {
-                            teamA += 2;
-                          });
+                          context.read<TeamsVm>().addPoint(2, 'A');
                         },
                         child: Text('Add 2 point'),
                       ),
@@ -106,9 +106,7 @@ class _Exo5State extends State<Exo5> {
                           backgroundColor: Colors.orange,
                         ),
                         onPressed: () {
-                          setState(() {
-                            teamA += 3;
-                          });
+                          context.read<TeamsVm>().addPoint(3, 'A');
                         },
                         child: Text('Add 3 point'),
                       ),
@@ -144,14 +142,20 @@ class _Exo5State extends State<Exo5> {
                       ),
                       Divider(),
                       SizedBox(height: 20),
-                      Text(
-                        style: TextStyle(
-                          fontSize: teamB >= 100 ? 110 : 150,
-                          fontWeight: FontWeight.bold,
+                      Consumer<TeamsVm>(
+                        builder: (context, value, child) => Text(
+                          style: TextStyle(
+                            fontSize: value.scoreTeamB >= 100 ? 110 : 150,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          value.scoreTeamB.toString(),
                         ),
-                        '$teamB',
                       ),
-                      SizedBox(height: teamB >= 100 ? 107 : 20),
+                      SizedBox(
+                        height: context.watch<TeamsVm>().scoreTeamB >= 100
+                            ? 107
+                            : 20,
+                      ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           padding: EdgeInsets.symmetric(
@@ -161,9 +165,7 @@ class _Exo5State extends State<Exo5> {
                           backgroundColor: Colors.orange,
                         ),
                         onPressed: () {
-                          setState(() {
-                            teamB++;
-                          });
+                          context.read<TeamsVm>().addPoint(1, 'B');
                         },
                         child: Text('Add 1 point'),
                       ),
@@ -177,9 +179,7 @@ class _Exo5State extends State<Exo5> {
                           backgroundColor: Colors.orange,
                         ),
                         onPressed: () {
-                          setState(() {
-                            teamB += 2;
-                          });
+                          context.read<TeamsVm>().addPoint(2, 'B');
                         },
                         child: Text('Add 2 point'),
                       ),
@@ -193,9 +193,7 @@ class _Exo5State extends State<Exo5> {
                           backgroundColor: Colors.orange,
                         ),
                         onPressed: () {
-                          setState(() {
-                            teamB += 3;
-                          });
+                          context.read<TeamsVm>().addPoint(3, 'B');
                         },
                         child: Text('Add 3 point'),
                       ),
@@ -219,10 +217,7 @@ class _Exo5State extends State<Exo5> {
                         backgroundColor: Colors.orange,
                       ),
                       onPressed: () {
-                        setState(() {
-                          teamA = 0;
-                          teamB = 0;
-                        });
+                        context.read<TeamsVm>().resetScore();
                       },
                       child: Text('Reset'),
                     ),
